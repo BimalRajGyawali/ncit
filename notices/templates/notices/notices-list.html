@@ -1,0 +1,10 @@
+{% extends 'academics/base.html' %}
+
+{% block content %}
+
+  {% for notice in notices %}
+     <h2><a href="{{notice.get_absolute_url}}">{{notice.heading}}</a></h2>
+     <p>{{notice.date_posted}}</p>
+ {% endfor %}
+
+{% endblock %}

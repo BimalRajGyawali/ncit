@@ -1,0 +1,34 @@
+.navbar{
+    position: sticky;
+    top:0;
+    z-index: 1;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    background: #fff;
+
+}
+#navbarDropdown{
+    text-transform: uppercase;
+ }
+.container{
+    margin-top: 40px;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+@media only screen and (min-width:768px){
+    .box{
+        box-sizing: border-box;
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+}
+
+ @media only screen and (min-width:600px){
+    .logo{
+        width:80%;
+    }
+
+}
+#accordion{
+    text-align: left;
+    margin-bottom: 80px;
+  }

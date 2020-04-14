@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse
 
 
 class Program(models.Model):
@@ -8,6 +9,9 @@ class Program(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+    def get_absolute_url(self):
+        return reverse('programs', args=(self.code,))
 
 
 class Subject(models.Model):
