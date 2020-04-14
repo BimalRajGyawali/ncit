@@ -32,3 +32,9 @@
     text-align: left;
     margin-bottom: 80px;
   }
+
+ /* Image gallery*/
+.image{
+  width:30%;
+  height:30%;
+}
