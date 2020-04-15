@@ -2,14 +2,4 @@
 
 {% block content %}
 
-   {% for image in gallery %}
-   <a href="{{image.img.url}}">
-       <img class="img-thumbnail image" src="{{image.img.url}}"
-            alt="{{image.caption}}" title="{{image.caption}}" >
-
-   </a>
-
-
-   {% endfor %}
-      
 {% endblock%}
