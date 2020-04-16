@@ -1,0 +1,53 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/"><img class="logo" src="{% static 'academics/images/logo.png' %}" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/">Home </a>
+         </li>
+           <li class="nav-item">
+              <a class="nav-link" href="{% url 'facility' %}">Facilities </a>
+         </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Programs
+            </a>
+            <ul class="dropdown-menu drop-links">
+                {% for program in programs %}
+               <li class="dropdown-item">
+                   <a class="dropdown-item" href=" {{program.get_absolute_url}}">
+                       {% if current_program.name == program.name%}
+                        <span class="text-muted">{{program.name}}</span>
+                       {% else %}
+                       <span >{{program.name}}</span>
+                       {% endif %}
+                   </a>
+                </li>
+                {% endfor %}
+             </ul>
+        </li>
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Admission
+            </a>
+            <ul class="dropdown-menu">
+               <li class="dropdown-item">
+                   <a class="dropdown-item" href="{% url 'scholarship' %}">Scholarships</a>
+               </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'notices' %}">Notice </a>
+         </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'gallery' %}">Gallery </a>
+         </li>
+      </ul>
+    </div>
+  </nav>

@@ -17,13 +17,8 @@ class Notice(models.Model):
         return f'{self.heading}'
 
     @staticmethod
-    def get_notices_by_date(n):
-        return Notice.objects.all().order_by('-date_posted')[:n]
-
-    @staticmethod
-    def get_all_notices():
+    def get_notices_by_date():
         return Notice.objects.all().order_by('-date_posted')
-
 
     @staticmethod
     def get_notice(heading):
