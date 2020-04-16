@@ -40,7 +40,7 @@
             <ul class="dropdown-menu drop-links">
                 {% for program in programs %}
                <li class="dropdown-item">
-                   <a class="dropdown-item" href="{{program.get_absolute_url}}">
+                   <a class="dropdown-item" href=" {{program.get_absolute_url}}">
                        {% if current_program.name == program.name%}
                         <span class="text-muted">{{program.name}}</span>
                        {% else %}

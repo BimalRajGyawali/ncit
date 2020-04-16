@@ -6,18 +6,19 @@ from django.urls import reverse
 class Program(models.Model):
     name = models.CharField(max_length=100)
     code = models.IntegerField()
-    desc = models.TextField(default="")
-    career_prospectus = models.TextField(null=True)
+    desc = models.TextField(default="", blank=True)
+    career_prospectus = models.TextField(default="", blank=True)
 
     def __str__(self):
         return f'{self.name}'
 
+
     def get_absolute_url(self):
-        return reverse('programs', args=(self.code,))
+        return reverse('programs', args=(26,))  # Displaying BE Software for all courses
 
 
 class Subject(models.Model):
-    code = models.CharField(max_length=10)
+    code = models.CharField(max_length=10, default='N/A')
     name = models.CharField(max_length=100)
     credit = models.IntegerField()
     programs = models.ManyToManyField(Program)
@@ -41,13 +42,13 @@ class Semester(models.Model):
     def get_meaningful_sem(sem):
         names = {
             1: "First (I)",
-            2: "Second II",
+            2: "Second (II)",
             3: "Third (III)",
-            4: "Fourth IV",
-            5: "Fifth V",
-            6: "Sixth VI",
-            7: "Seventh VII",
-            8: "Eight VIII"
+            4: "Fourth (IV)",
+            5: "Fifth (V)",
+            6: "Sixth (VI)",
+            7: "Seventh (VII)",
+            8: "Eight (VIII)"
         }
         return names.get(sem)
 

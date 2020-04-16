@@ -3,10 +3,16 @@
 {% block content %}
    <h2 class="navy heading">{{current_program.name}}</h2>
 
+<!--    Remove this line later, only for demo-->
+
+  <small style="background:#00FFFF;">This is the sample page for all programs</small>
+
+  {% if current_program.desc %}
    <div class="course-desc mt-5">
        <p class="heading">Course Description</p>
        <p class="para">{{current_program.desc}}</p>
    </div>
+ {% endif %}
 
   {% if current_program.career_prospectus %}
    <div class="course-career mt-5">
@@ -21,16 +27,17 @@
 
          {% for semester in semesters %}
 
-        <div class="card">
-          <div class="card-header" id="headingOne">
+
+        <div class="card mb-3">
+          <div class="card-header" id="">
             <h5 class="mb-0">
-              <button class="btn btn-link btn-black" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button class="btn btn-link btn-black" data-toggle="collapse" data-target="#collapse{{semester.semester.sem}}" aria-expanded="false" aria-controls="collapse{{semester.semester.sem}}">
                {{semester.semester.program.name}} -  {{semester.name}} Semester
               </button>
             </h5>
           </div>
 
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div id="collapse{{semester.semester.sem}}" class="collapse show" aria-labelledby="{{semester.semester.sem}}" data-parent="#accordion">
             <div class="card-body">
 
                 <table class="table table-bordered">
@@ -48,7 +55,7 @@
 
       <td>{{subject.code}}</td>
       <td>{{subject.name}}</td>
-      <td>{{subject.credits}}</td>
+      <td>{{subject.credit}}</td>
     </tr>
   {% endfor %}
 
@@ -58,6 +65,7 @@
             </div>
           </div>
         </div>
+
         {% endfor %}
        </div>
    </div>

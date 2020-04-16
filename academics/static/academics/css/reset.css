@@ -13,10 +13,7 @@ img{
 .nav-link{
     text-transform: uppercase;
  }
- #accordion{
-    text-align: left;
-    margin-bottom: 80px;
-  }
+
   .navbar{
     position: sticky;
     top:0;
@@ -148,4 +145,8 @@ img{
 
 .white{
   color: white;
+}
+
+tr{
+  text-align:center;
 }

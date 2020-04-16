@@ -11,7 +11,7 @@ programs = Program.objects.all()
 def notice(request):
     page_num = request.GET.get('page', 1)
     notices = Notice.get_all_notices()
-    paginator = Paginator(notices, 1)  # 10 notices in one page
+    paginator = Paginator(notices, 8)  # 10 notices in one page
     print(page_num)
     try:
         notices = paginator.page(page_num)
