@@ -10,6 +10,7 @@ media
 *.bak
 
 # PyCharm #
+.idea/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
