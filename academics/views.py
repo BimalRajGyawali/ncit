@@ -53,5 +53,7 @@ def scholarship(request):
 
 
 def error(request):
-    return render(request, 'academics/error.html', {'error': '404 Page Not Found'})
+    context.update({'error': '404 Page Not Found'})
+    print(f'======================{context} hello================')
+    return render(request, 'academics/error.html', context)
 
