@@ -1,10 +1,22 @@
 {% extends 'academics/base.html' %}
 
 {% block content %}
-   <h2>{{current_program.name}}</h2>
+   <h2 class="navy heading">{{current_program.name}}</h2>
 
-   <div class="course-structure">
-        <p class="div black">Course Structure</p>
+   <div class="course-desc mt-5">
+       <p class="heading">Course Description</p>
+       <p class="para">{{current_program.desc}}</p>
+   </div>
+
+  {% if current_program.career_prospectus %}
+   <div class="course-career mt-5">
+        <p class="heading">Career Prospectus</p>
+       <p class="para">{{current_program.career_prospectus}}</p>
+   </div>
+  {% endif %}
+
+   <div class="course-structure mt-5">
+        <p class="pb-3 heading">Course Structure</p>
        <div id="accordion">
 
          {% for semester in semesters %}
@@ -12,19 +24,37 @@
         <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-               Semester {{semester.semester.sem}}
+              <button class="btn btn-link btn-black" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+               {{semester.semester.program.name}} -  {{semester.name}} Semester
               </button>
             </h5>
           </div>
 
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                <ul class="list-group list-group-flush">
-                     {% for subject in semester.subjects%}
-                       <li class="list-group-item">{{subject.name}}</li>
-                     {% endfor %}
-                </ul>
+
+                <table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Credits</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for subject in semester.subjects%}
+    <tr>
+
+      <td>{{subject.code}}</td>
+      <td>{{subject.name}}</td>
+      <td>{{subject.credits}}</td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+                </table>
+
             </div>
           </div>
         </div>
@@ -32,5 +62,28 @@
        </div>
    </div>
 
+{% endblock %}
+
+
+{% block side-bar %}
+   <div class=" col-md-4 ">
+                 <!-- side bar-->
+                <ul class="list-group notice-bar " >
+                     <ul class="list-group list-group-flush" >
+                         <li  class="list-group-item text-danger notice" style="margin-bottom:30px;"><i class="fa fa-bullhorn"></i>&nbsp;Notice Board</li>
+                    </ul>
+                     {% for notice in side_bar_notices %}
+
+                    <div class="card notice-card">
+                       <div class="card-body">
+                           <h5 class="card-title">{{notice.heading}}</h5>
+                            <p class="text-muted"><em>Posted on : </em>{{notice.date_posted|date:"F d, Y"}}</p>
+                            <a href="{{notice.get_absolute_url}}" class="btn btn-primary">View Notice</a>
+                       </div>
+                    </div>
+                    {% endfor %}
+
+                </ul>
+          </div>
 {% endblock %}
 

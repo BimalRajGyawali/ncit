@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'academics/css/reset.css' %}"/>
-    <link rel="stylesheet" href="{% static 'academics/css/base.css' %}"/>
+<!--    <link rel="stylesheet" href="{% static 'academics/css/base.css' %}"/>-->
+
+
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -22,11 +24,20 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/">Home </a>
+         </li>
+           <li class="nav-item">
+              <a class="nav-link" href="{% url 'facility' %}">Facilities </a>
+         </li>
+
+
+
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              Programs
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu drop-links">
                 {% for program in programs %}
                <li class="dropdown-item">
                    <a class="dropdown-item" href="{{program.get_absolute_url}}">
@@ -41,6 +52,26 @@
              </ul>
         </li>
 
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Admission
+            </a>
+            <ul class="dropdown-menu">
+               <li class="dropdown-item">
+                   <a class="dropdown-item" href="{% url 'scholarship' %}">Scholarships</a>
+               </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'notices' %}">Notice </a>
+         </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'gallery' %}">Gallery </a>
+         </li>
+
+
+
       </ul>
     </div>
   </nav>
@@ -49,27 +80,17 @@
 
       <div class="container">
          <div class="row">
-             <div class="col-xs-12 col-lg-9 box">
-<!--               Main Body-->
+            <div class="col-md-8 main">
+                <!-- Main Body-->
                  {% block content%}{% endblock %}
            </div>
-     <div class=" col-lg-3">
-<!--      side bar-->
-         <ul class="list-group">
-            <ul class="list-group list-group-flush">
-             <li  class="list-group-item text-danger notice"><i class="fa fa-bullhorn"></i>&nbsp;Notice Board</li>
-            </ul>
-             {% for notice in side_bar_notices %}
-               <li class="list-group-item">
-                   <a href="{{notice.get_absolute_url}}">{{notice.heading}}</a>
-                   <p class="text-muted">{{notice.date_posted}}</p>
-               </li>
-             {% endfor %}
-
-         </ul>
+            {% block side-bar %}{% endblock %}
+        </div>
     </div>
-  </div>
-</div>
+
+      <footer>
+        <p class="footer-text">Copyright &copy; Nepal College of Information Technology</p>
+    </footer>
 
 
 
@@ -82,8 +103,11 @@
        $('.carousel').carousel({
         keyboard:true,
         interval:2500
-      })
+
 })
+
+});
+
   </script>
 
 </body>

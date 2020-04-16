@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from academics.views import error
 
 
 urlpatterns = [
-    path('', include('academics.urls')),
-    path('notices/', include('notices.urls')),
-    path('gallery/', include('image_gallery.urls')),
-    path('admin/', admin.site.urls),
+    path(r'', include('academics.urls')),
+    path(r'notices/', include('notices.urls')),
+    path(r'gallery/', include('image_gallery.urls')),
+    path(r'manage/', admin.site.urls),
+    path(r'^$', error)
 ]
 
 if settings.DEBUG:

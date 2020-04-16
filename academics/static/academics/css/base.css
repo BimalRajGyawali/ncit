@@ -38,3 +38,19 @@
 .gallery-container{
 
 }
+
+@media only screen and (min-width:600px){
+        .image-div{
+            width:50%;
+            float:left;
+            padding:2%;
+           }
+}
+
+@media only screen and (min-width:768px){
+        .image-div{
+            width:33.33%;
+            float:left;
+            padding:2%;
+           }
+}

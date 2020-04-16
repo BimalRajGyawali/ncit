@@ -1,0 +1,57 @@
+{% extends 'academics/base.html' %}
+
+{% block content %}
+ <h2 class="navy heading">Scholarships</h2>
+
+   <div class="course-desc mt-5">
+       <p class="heading">PU Scholarships</p>
+       <p class="para ">
+          The College provides scholarships to deserving students
+           according to PU guidelines. 5% of the annual intake of students
+           is provided scholarships in this category.
+
+       </p>
+   </div>
+
+<div class="course-desc mt-5">
+       <p class="heading">NCIT Scholarships</p>
+       <p class="para">
+         The College provides scholarships based on the student’s
+         combined marks of +2/equivalent and the NCIT Entrance Test.
+       </p>
+   </div>
+
+<div class="course-desc mt-5">
+       <p class="heading">Performance Scholarships</p>
+       <p class="para">
+          TThe College awards full scholarships (Semester Fees waiver)
+           to students who achieve an SGPA of 4 in any Semester for the
+           subsequent Semester.
+       </p>
+    <p class="para">NCIT also awards those students who are class toppers or second- toppers.</p>
+</div>
+
+{% endblock%}
+
+
+{% block side-bar %}
+      <div class=" col-md-4 ">
+                 <!-- side bar-->
+                <ul class="list-group notice-bar " >
+                     <ul class="list-group list-group-flush" >
+                         <li  class="list-group-item text-danger notice" style="margin-bottom:30px;"><i class="fa fa-bullhorn"></i>&nbsp;Notice Board</li>
+                    </ul>
+                     {% for notice in side_bar_notices %}
+
+                    <div class="card notice-card">
+                       <div class="card-body">
+                           <h5 class="card-title">{{notice.heading}}</h5>
+                            <p class="text-muted"><em>Posted on : </em>{{notice.date_posted|date:"F d, Y"}}</p>
+                            <a href="{{notice.get_absolute_url}}" class="btn btn-primary">View Notice</a>
+                       </div>
+                    </div>
+                    {% endfor %}
+
+                </ul>
+          </div>
+{% endblock %}

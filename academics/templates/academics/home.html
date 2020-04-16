@@ -2,6 +2,20 @@
 {% load static %}
 
 {% block carousel %}
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+    </ol>
+
+
  <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="{% static 'academics/images/carousel/conference.jpg' %}" class="d-block w-100" alt="...">
@@ -42,17 +56,66 @@
             <span class="sr-only">Next</span>
         </a>
   </div>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-    </ol>
 </div>
 
+{% endblock %}
+
+
+{% block content%}
+        <div class="para">
+              <p>
+                <span class="bold">Nepal College of Information  Technology – NCIT</span>, established in 2001,
+                 runs Pokhara University-affiliated Bachelor’s and Master’s programs – BE, BBA, ME, MSc & MCIS.
+                Our  Engineering Degrees are approved by  the Nepal Engineering Council. It has  produced over
+                a thousand engineers  since its establishment.
+               </p>
+
+
+             <p>   NCIT, a pioneer private institution  providing engineering education in  Nepal, is renowned for  excellence in  teaching & research, while maintaining  close and mutually beneficial links  with various sectors. The College  provides excellent higher education  opportunities and nurtures individual  talent using an applicable knowledge  base that fully supports ongoing social  changes and economic advances.
+                The institution is committed to providing quality education  in various engineering disciplines
+                 keeping in mind  emerging professional needs. Our highly qualified and  experienced faculty is
+                  fully dedicated to their teaching. We  have a state-of-the-art infrastructure to foster academic  excellence. Moreover, we provide vital non-credit inputs  including research & project work, supplementing the  regular
+                courses to meet the diverse learning needs of its  students and improve their
+                employability.</p>
+
+                <p>
+                    <img class="para-image" src="{% static 'academics/images/carousel/building.jpg' %}" alt="">
+                </p>
+
+        <p>
+            The College is also an authorized training partner of  CISCO, Red Hat, and Microsoft.
+            It provides related- training and conducts preparatory examinations leading to internationally
+             recognized certifications from these  renowned institutions. NCIT has MOUs with the Microsoft
+              Innovation Center and many reputed multinational and  local companies for internships and
+              training programmers.
+
+        </p>
+                <p>
+                NCIT envisions an institutional role for itself beyond  academic boundaries.
+                It takes the aspirations and future  success of its students as pathway to nation building.
+               </p>
+
+        </div>
+{% endblock %}
+
+{% block side-bar %}
+   <div class=" col-md-4 ">
+                 <!-- side bar-->
+                <ul class="list-group notice-bar " >
+                     <ul class="list-group list-group-flush" >
+                         <li  class="list-group-item text-danger notice" style="margin-bottom:30px;"><i class="fa fa-bullhorn"></i>&nbsp;Notice Board</li>
+                    </ul>
+                     {% for notice in side_bar_notices %}
+
+                    <div class="card notice-card">
+                       <div class="card-body">
+                           <h5 class="card-title">{{notice.heading}}</h5>
+                            <p class="text-muted"><em>Posted on : </em>{{notice.date_posted|date:"F d, Y"}}</p>
+                            <a href="{{notice.get_absolute_url}}" class="btn btn-primary">View Notice</a>
+                       </div>
+                    </div>
+                    {% endfor %}
+
+                </ul>
+          </div>
 {% endblock %}

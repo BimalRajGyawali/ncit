@@ -6,10 +6,12 @@ from django.urls import reverse
 class Notice(models.Model):
     heading = models.CharField(max_length=100)
     date_posted = models.DateTimeField(default=timezone.now)
+    body = models.TextField(default="")
     author = models.CharField(max_length=100, default='NCIT')
+    image = models.ImageField(upload_to='uploads/notices/',  blank=True)
 
     def get_absolute_url(self):
-        return reverse('notice', args=(self.heading.replace(' ', '-'),))
+        return reverse('notice', args=(self.heading,))
 
     def __str__(self):
         return f'{self.heading}'
@@ -25,5 +27,4 @@ class Notice(models.Model):
 
     @staticmethod
     def get_notice(heading):
-        heading = heading.replace('-', ' ')
         return Notice.objects.filter(heading=heading).first()
