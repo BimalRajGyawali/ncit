@@ -1,7 +1,5 @@
 # NCIT - Nepal College of Information Technology
 College website with django. Live at https://bimalrajgyawali.pythonanywhere.com/
-<br><br>
-
 
 # Setting up the project in your local machine
 
