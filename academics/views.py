@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Program, Subject, Semester
+from django.shortcuts import render
+from .models import Program, Semester
 
 
 def program(request, code):
@@ -7,7 +7,7 @@ def program(request, code):
     current_program = Program.objects.filter(code=code).first()
 
     if current_program is None:
-        return render(request, 'academics/error.html', {'error': '404 Page Not Found '})
+        return render(request, 'academics/404.html', {'error': '404 Page Not Found '})
 
     current_program_semesters = Semester.objects.filter(program__code=code)
     semesters = []
@@ -38,10 +38,7 @@ def scholarship(request):
     return render(request, 'academics/scholarship.html')
 
 
-def error(request):
-    return render(request, 'academics/error.html', {'error': '404 Page Not Found'})
+def handle404(request):
+    return render(request, 'academics/404.html', {'error': '404 Page Not Found'})
 
-
-def test(request):
-    return render(request, 'academics/my_test.html')
 

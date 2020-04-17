@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-import sys
+
 
 def find_or_create_secret_key():
     """
@@ -28,30 +28,28 @@ def find_or_create_secret_key():
     Otherwise, generate a new secret key, save it in secret_key.py, and return the key.
     """
 
-    SECRET_KEY_FILEPATH = os.path.join(BASE_DIR, 'secret_key.py')
+    secret_key_filename = os.path.join(BASE_DIR, 'secret_key.py')
 
-    if os.path.isfile(SECRET_KEY_FILEPATH):
+    if os.path.isfile(secret_key_filename):
         from secret_key import SECRET_KEY
         return SECRET_KEY
     else:
         from django.utils.crypto import get_random_string
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&amp;*(-_=+)'
         new_key = get_random_string(50, chars)
-        with open(SECRET_KEY_FILEPATH, 'w') as f:
+        with open(secret_key_filename, 'w') as f:
             f.write("# Django secret key\n# Do NOT check this into version control.\n\nSECRET_KEY = '%s'\n" % new_key)
         from secret_key import SECRET_KEY
         return SECRET_KEY
 
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = find_or_create_secret_key()
-
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -82,7 +80,7 @@ ROOT_URLCONF = 'ncit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,7 +96,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ncit.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -108,7 +105,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -128,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -142,7 +137,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -151,7 +145,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
