@@ -29,6 +29,10 @@ media
 *.py[cod]
 *$py.class
 
+
+#secret key
+secret_key.py
+
 # Distribution / packaging
 .Python build/
 develop-eggs/
