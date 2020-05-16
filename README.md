@@ -1,7 +1,7 @@
 # NCIT - Nepal College of Information Technology
 Unofficial College website with django. Live at https://bimalrajgyawali.pythonanywhere.com/
 
-Documentation for this project is at https://bimalrajgyawali.github.io/ncit-docs/index.html
+Documentation for this project is at https://bimalrajgyawali.github.io/ncit-docs/
 
 # Setting up the project in your local machine
 
