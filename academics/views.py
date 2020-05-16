@@ -16,7 +16,9 @@ def program(request, code):
     :param code: program code
 
     -> filters out the program on the basis of given program code
+
     -> if no program exists with that code, return 404
+
     -> otherwise, render program.html with context current_program
 
 
