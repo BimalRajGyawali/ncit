@@ -9,7 +9,6 @@ from notices.models import Notice
 
 def get_context_global_variable(request):
     """
-
            :type request: HTTPRequest
            :param request: carries request info
            :return: context which is available in all templates
