@@ -6,6 +6,14 @@ __pycache__
 db.sqlite3
 media
 
+
+#docs
+docs/
+.buildinfo
+.doctrees/
+
+
+
 # Backup files #
 *.bak
 

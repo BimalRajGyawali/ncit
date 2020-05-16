@@ -25,19 +25,19 @@
         <p class="pb-3 heading">Course Structure</p>
        <div id="accordion">
 
-         {% for semester in semesters %}
+         {% for semester in current_program.semester_set.all %}
 
 
         <div class="card mb-3">
           <div class="card-header" id="">
             <h5 class="mb-0">
-              <button class="btn btn-link btn-black" data-toggle="collapse" data-target="#collapse{{semester.semester.sem}}" aria-expanded="false" aria-controls="collapse{{semester.semester.sem}}">
-               {{semester.semester.program.name}} -  {{semester.name}} Semester
+              <button class="btn btn-link btn-black" data-toggle="collapse" data-target="#collapse{{semester.sem}}" aria-expanded="false" aria-controls="collapse{{semester.sem}}">
+               {{semester.program.name}} -  {{semester.get_meaningful_name}} Semester
               </button>
             </h5>
           </div>
 
-          <div id="collapse{{semester.semester.sem}}" class="collapse show" aria-labelledby="{{semester.semester.sem}}" data-parent="#accordion">
+          <div id="collapse{{semester.sem}}" class="collapse show" aria-labelledby="{{semester.sem}}" data-parent="#accordion">
             <div class="card-body">
 
                 <table class="table table-bordered">
@@ -50,7 +50,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for subject in semester.subjects%}
+    {% for subject in semester.subjects.all%}
     <tr>
 
       <td>{{subject.code}}</td>
