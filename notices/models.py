@@ -3,14 +3,27 @@ from django.utils import timezone
 from django.urls import reverse
 
 
+"""
+    All the database entities of notices app are described in this module.
+"""
+
 class Notice(models.Model):
-    heading = models.CharField(max_length=100)
+    """
+     Notice model represents the notice uploaded by the college admin.
+
+     Each notice should have a unique heading/title.
+
+    """
+    heading = models.CharField(max_length=100, unique=True)
     date_posted = models.DateTimeField(default=timezone.now)
-    body = models.TextField(default="")
+    body = models.TextField()
     author = models.CharField(max_length=100, default='NCIT')
     image = models.ImageField(upload_to='uploads/notices/',  blank=True)
 
     def get_absolute_url(self):
+        """
+                :return: url of the corresponding notice on basis of heading as notices/{heading}
+        """
         return reverse('notice', args=(self.heading,))
 
     def __str__(self):
@@ -18,8 +31,16 @@ class Notice(models.Model):
 
     @staticmethod
     def get_notices_by_date():
+        """
+        :return: list of notices in descending order of date_posted (latest notice first)
+        """
         return Notice.objects.all().order_by('-date_posted')
 
     @staticmethod
     def get_notice(heading):
-        return Notice.objects.filter(heading=heading).first()
+        """
+        :type heading: string
+        :param heading: heading/title of notice
+        :return: notice object with the heading passed as parameter
+        """
+        return Notice.objects.get(heading=heading)
