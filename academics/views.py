@@ -91,3 +91,4 @@ def contact_us(request):
             return render(request, 'academics/contact-us.html', {'form' : form})
     else:
         return render(request, 'academics/contact-us.html', {'form' : newform})
+

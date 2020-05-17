@@ -11,8 +11,20 @@ img{
    max-width: 100%;
 }
 .nav-link{
-    text-transform: uppercase;
+    text-transform: titlecase;
+    font-family: 'Raleway';
+    font-size: 1em;
+    font-weight: bold;
  }
+
+ /* For extra large devices */
+@media only screen and (min-width:1200px){
+      .nav-link{
+        letter-spacing: 0.1em;
+      }
+
+}
+
 
   .navbar{
     position: sticky;
@@ -149,4 +161,22 @@ img{
 
 tr{
   text-align:center;
+}
+.header{
+    background:navy;
+    color: white;
+}
+
+.left{
+    float:left;
+}
+.right{
+    float:right;
+}
+.logo{
+   margin:0 auto;
+   text-align:center;
+}
+.links{
+    margin : 0 auto;
 }

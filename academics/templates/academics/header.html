@@ -1,13 +1,17 @@
 {% load static %}
+  <div class="logo mt-2">
+        <a class="navbar-brand" href="/"><img class="logo" src="{% static 'academics/images/logo.png' %}" alt=""></a>
 
-<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="/"><img class="logo" src="{% static 'academics/images/logo.png' %}" alt=""></a>
+  </div>
+
+ <nav class="navbar navbar-expand-lg navbar-light">
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto links mt-4">
           <li class="nav-item">
               <a class="nav-link" href="/">Home </a>
          </li>
@@ -51,6 +55,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact_us' %}">Contact </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link text-info"  href=""><i class="fa fa-user"> </i> Login/Register </a>
+          </li>
+
       </ul>
     </div>
   </nav>
+
+
