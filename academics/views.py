@@ -79,14 +79,15 @@ def handle404(request):
 
 
 def contact_us(request):
+    newform = ContactUsForm()
     if request.method=='POST':
         form = ContactUsForm(data=request.POST)
         if form.is_valid():
-            save = Message.objects.create(name=form.data.get('name'), email=form.data.get('email'), message = form.data.get('message'), date=timezone.now())
-            newform = ContactUsForm()
+            message = form.save(commit=False)
+            message.date = timezone.now()
+            message.save()
             return render(request, 'academics/contact-us.html', {'success' : True,'form':newform})
         else:
             return render(request, 'academics/contact-us.html', {'form' : form})
     else:
-        form = ContactUsForm()
-        return render(request, 'academics/contact-us.html', {'form' : form})
+        return render(request, 'academics/contact-us.html', {'form' : newform})
