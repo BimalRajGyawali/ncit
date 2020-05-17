@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import Program, Semester
+from .models import Program, Semester, Message
+from .forms import ContactUsForm
+from django.utils import timezone
 
 """
     This module contains the methods and classes to handle HTTPRequest and 
@@ -76,3 +78,16 @@ def handle404(request):
     return render(request, 'academics/404.html', {'error': '404 Page Not Found'})
 
 
+def contact_us(request):
+    newform = ContactUsForm()
+    if request.method=='POST':
+        form = ContactUsForm(data=request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.date = timezone.now()
+            message.save()
+            return render(request, 'academics/contact-us.html', {'success' : True,'form':newform})
+        else:
+            return render(request, 'academics/contact-us.html', {'form' : form})
+    else:
+        return render(request, 'academics/contact-us.html', {'form' : newform})

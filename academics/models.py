@@ -117,6 +117,16 @@ class Semester(models.Model):
         return f'{self.program} - {self.sem} sem'
 
 
+class Message(models.Model):
+    """
+    Message model for contact us form.
+    """
+    email = models.EmailField()
+    name = models.CharField(max_length=100)
+    message = models.TextField()
+    date = models.DateTimeField()
+    def __str__(self):
+        return self.name
 
 
 
