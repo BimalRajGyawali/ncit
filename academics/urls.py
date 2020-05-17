@@ -9,5 +9,5 @@ urlpatterns = [
     path('programs/<int:code>', program, name='programs'),
     path('facilities/', facility, name='facility'),
     path('scholarships/', scholarship, name='scholarship'),
-    path('contact-us/', contact_us, name="contact_us")
+    path('contact-us/', contact_us, name="contact_us"),
 ]
