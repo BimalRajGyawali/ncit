@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'academics',
     'notices',
     'image_gallery',
-    'academics',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
