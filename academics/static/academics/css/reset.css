@@ -180,3 +180,40 @@ tr{
 .links{
     margin : 0 auto;
 }
+.login-banner {
+  padding:10px;
+  background: #000035;
+  overflow: auto;
+  display: none;
+}
+.login-banner a{
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+   margin-right: 12px;
+  font-family: 'Raleway';
+  transition: color 0.8s;
+}
+
+.login-banner .left a i{
+    margin-right: 7px;
+
+}
+.login-banner .right a i{
+    margin-right: 1px;
+
+}
+
+
+.login-banner a:hover{
+   color: gray;
+}
+@media only screen and (min-width: 768px){
+       .login-banner{
+         display: block;
+       }
+       .lg-hidden{
+         display: none;
+       }
+
+}

@@ -6,6 +6,28 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
+
+let inputs = document.getElementById(`fieldset${event.target.id}`).getElementsByTagName('input');
+
+
+ for(let i=0; i<inputs.length; i++){
+
+    if(!inputs[i].value.trim()){
+            inputs[i].focus();
+            inputs[i].style.outline = '1px solid red';
+            inputs[i].classList.add('error');
+            inputs[i].addEventListener('keydown', ()=>{
+                  inputs[i].style.outline = 0;
+                  inputs[i].style.color = 'black';
+
+                  inputs[i].classList.remove('error');
+
+            });
+         return false;
+     }
+  }
+
+
 	if(animating) return false;
 	animating = true;
 
@@ -76,7 +98,42 @@ $(".previous").click(function(){
 });
 
 $(".submit").click(function(){
-	return false;
+event.preventDefault();
+let inputs = document.getElementById(`fieldset${event.target.id}`).getElementsByTagName('input');
+
+ for(let i=0; i<inputs.length; i++){
+     if(!inputs[i].value.trim()){
+            inputs[i].focus();
+            inputs[i].style.outline = '1px solid red';
+            inputs[i].classList.add('error');
+               inputs[i].addEventListener('keydown', ()=>{
+              inputs[i].style.outline = 0;
+              inputs[i].style.color = 'black';
+              inputs[i].classList.remove('error');
+
+            });
+
+            return false;
+
+     }
+  }
+
+
+  let emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  let email = inputs[0].value;
+
+  if(!emailPattern.test(email)){
+      inputs[0].placeholder = `${email} is not valid email`;
+      inputs[0].focus();
+      inputs[0].style.outline = '1px solid red';
+      inputs[0].classList.add('error');
+     return false;
+  }
+
+
+
+
+
 })
 
 });
