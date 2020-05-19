@@ -6,8 +6,8 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ['roll', 'name', 'sem', 'phone', 'registered']
 
 class StudentLoginAdmin(admin.ModelAdmin):
-    list_display = ['roll', 'password', 'student']
+    list_display = ['password', 'student', 'email']
 
 
 admin.site.register(Student, StudentAdmin)
-admin.site.register(Student, StudentLoginAdmin)
+admin.site.register(StudentLogin, StudentLoginAdmin)

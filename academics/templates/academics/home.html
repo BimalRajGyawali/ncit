@@ -1,5 +1,8 @@
 {% extends 'academics/base.html' %}
 {% load static %}
+{% for message in messages %}
+  {{ message }}
+{% endfor %}
 
 {% block carousel %}
 
