@@ -123,10 +123,17 @@ let inputs = document.getElementById(`fieldset${event.target.id}`).getElementsBy
   let email = inputs[0].value;
 
   if(!emailPattern.test(email)){
+      inputs[0].value = '';
       inputs[0].placeholder = `${email} is not valid email`;
       inputs[0].focus();
       inputs[0].style.outline = '1px solid red';
       inputs[0].classList.add('error');
+      inputs[0].addEventListener('keydown', ()=>{
+       inputs[0].style.outline = 0;
+       inputs[0].style.color = 'black';
+       inputs[0].classList.remove('error');
+       inputs[0].placeholder = 'Enter your email';
+      })
      return false;
   }
 
