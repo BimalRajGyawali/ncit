@@ -8,22 +8,46 @@ padding: 0;
 html {
 }
 body {
+background: #000035;
 font-family: montserrat, arial, verdana;
 }
 /*form styles*/
-#msform, #progressbar {
-width: 80%;
+#msform{
 margin: 50px auto;
 text-align: center;
 position: relative;
 }
-#progressbar{
- width: 100%;
+
+@media only screen and (max-width: 599px){
+    .mbl-banner h2{
+       font-size: 1.2em;
+    }
+    .mbl-banner p{
+       font-size: 0.8em;
+       padding: 0 5px 0 5px;
+    }
 }
+
+
+@media only screen and (min-width: 600px){
+  #msform{
+    width:80%;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  #msform{
+    width: 50%;
+  }
+}
+
+
+
+
 #msform fieldset {
 background: white;
 border: 0 none;
-border-radius: 3px;
+border-radius: 5px;
 box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 padding: 20px 30px;
 box-sizing: border-box;
@@ -75,53 +99,27 @@ font-weight: normal;
 font-size: 13px;
 color: #666;
 margin-bottom: 20px;
+
 }
-/*progressbar*/
-#progressbar {
-margin-bottom: 30px;
-overflow: hidden;
-/*CSS counters to number the steps*/
-counter-reset: step;
+.white{
+  color: white;
 }
-#progressbar li {
-list-style-type: none;
-color: white;
-text-transform: uppercase;
-font-size: 9px;
-width: 33.33%;
-float: left;
-position: relative;
+.dash{
+ padding: 3px 20px 3px 20px;
+ background: #c9c9c9;
+ display: inline-block;
+ border-radius: 3px;
+ margin-bottom: 20px;
 }
-#progressbar li:before {
-content: counter(step);
-counter-increment: step;
-width: 20px;
-line-height: 20px;
-display: block;
-font-size: 10px;
-color: #333;
-background: orange;
-border-radius: 50%;
-margin: 0 auto 5px auto;
+.active{
+ background: green;
 }
-/*progressbar connectors*/
-#progressbar li:after {
-content: '';
-width: 100%;
-height: 2px;
-background: orange;
-position: absolute;
-left: -50%;
-top: 9px;
-z-index: -1; /*put it behind the numbers*/
+
+.link{
+  color: white;
+  text-decoration: none;
 }
-#progressbar li:first-child:after {
-/*connector not needed before the first step*/
-content: none;
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before, #progressbar li.active:after {
-background: #27AE60;
-color: white;
+
+.action-button{
+  margin-top:30px;
 }
