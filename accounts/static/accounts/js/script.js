@@ -29,7 +29,8 @@ let len = inputs.length - event.target.id;   //removing buttons from length
  if(event.target.id == 1){
         /* Confirm roll is a number */
 let roll = inputs[0].value;
- if(!Number.isInteger(parseInt(roll))){
+let rollPattern = /^\d+$/;
+ if(!rollPattern.test(roll)){
 
       inputs[0].value = '';
       inputs[0].placeholder = `${roll} is not a valid roll number`;
