@@ -3,10 +3,10 @@ from .models import Student, StudentLogin
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['roll', 'name', 'sem', 'phone', 'registered']
+    list_display = ['roll', 'name', 'sem', 'phone','email', 'registered']
 
 class StudentLoginAdmin(admin.ModelAdmin):
-    list_display = ['password', 'student', 'email']
+    list_display = ['password', 'student']
 
 
 admin.site.register(Student, StudentAdmin)

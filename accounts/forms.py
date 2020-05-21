@@ -8,7 +8,7 @@ class StudentRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = StudentLogin
-        fields = ['roll', 'email', 'password', 'password1']
+        fields = ['roll', 'password', 'password1']
 
 
 

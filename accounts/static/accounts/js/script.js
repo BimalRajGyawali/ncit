@@ -47,8 +47,24 @@ let rollPattern = /^\d+$/;
  }
 
 
- }
+    fetch('/accounts/roll/',{
+       method : 'POST',
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify({
+         roll: parseInt(roll)
+       })
 
+    })
+    .then(response => response.json())
+    .then(data => {
+
+          document.getElementById('roll-error').textContent = data.msg;
+
+
+    })
+
+ }
+return false;
 
 	if(animating) return false;
 	animating = true;
