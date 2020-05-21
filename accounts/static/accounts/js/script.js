@@ -7,6 +7,51 @@ var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
 /* Prevent empty fields */
+<<<<<<< HEAD
+=======
+let inputs = document.getElementById(`fieldset${event.target.id}`).getElementsByTagName('input');
+
+let len = inputs.length - event.target.id;   //removing buttons from length
+
+ for(let i=0; i<len; i++){
+    if(!inputs[i].value){
+            inputs[i].focus();
+            inputs[i].style.outline = '1px solid red';
+            inputs[i].classList.add('error');
+            inputs[i].addEventListener('keydown', ()=>{
+                  inputs[i].style.outline = 0;
+                  inputs[i].style.color = 'black';
+
+                  inputs[i].classList.remove('error');
+
+            });
+         return false;
+     }
+  }
+ if(event.target.id == 1){
+        /* Confirm roll is a number */
+let roll = inputs[0].value;
+let rollPattern = /^\d+$/;
+ if(!rollPattern.test(roll)){
+
+      inputs[0].value = '';
+      inputs[0].placeholder = `${roll} is not a valid roll number`;
+      inputs[0].focus();
+      inputs[0].style.outline = '1px solid red';
+      inputs[0].classList.add('error');
+      inputs[0].addEventListener('keydown', ()=>{
+        inputs[0].style.outline = 0;
+        inputs[0].style.color = 'black';
+        inputs[0].classList.remove('error');
+        inputs[0].placeholder = 'Enter your roll number eg: 181522';
+    })
+     return false;
+ }
+
+
+ }
+
+>>>>>>> parent of bb21bc9... adds email verification
 
 	if(animating) return false;
 	animating = true;
