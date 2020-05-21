@@ -7,8 +7,6 @@ var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
 /* Prevent empty fields */
-<<<<<<< HEAD
-=======
 let inputs = document.getElementById(`fieldset${event.target.id}`).getElementsByTagName('input');
 
 let len = inputs.length - event.target.id;   //removing buttons from length
@@ -49,9 +47,27 @@ let rollPattern = /^\d+$/;
  }
 
 
- }
+    fetch('/accounts/roll/',{
+       method : 'POST',
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify({
+         roll: parseInt(roll)
+       })
 
->>>>>>> parent of bb21bc9... adds email verification
+    })
+    .then(response => response.json())
+    .then(data => {
+
+          document.getElementById('roll-error').textContent = data.msg;
+
+
+    })
+
+ }
+return false;
+
+
+
 
 	if(animating) return false;
 	animating = true;

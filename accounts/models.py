@@ -3,7 +3,8 @@ from django.db import models
 class Student(models.Model):
     roll = models.IntegerField(unique=True)
     name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=10, unique=True)
+    phone = models.CharField(max_length=10, unique=True, blank=True, null=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     sem = models.IntegerField()
     registered = models.BooleanField(default=False)
 
@@ -17,7 +18,6 @@ class Student(models.Model):
 
 class StudentLogin(models.Model):
     password = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
 
 
