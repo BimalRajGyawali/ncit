@@ -31,7 +31,7 @@
 <input type="text" id="roll" name="roll" placeholder="Enter roll number eg. 181522" autocomplete="off"/>
  <h3 align="left" class="fs-subtitle" style="color:red;" id="roll-error"></h3>
 
-<input id="1" type="button" name="next" class="mt-3 next action-button" value="Next" />
+<input id="next1" type="button" name="next" class="mt-3 next action-button" value="Next" />
 </fieldset>
 <fieldset id="fieldset2">
 <h2 class="fs-title">Verify it's you</h2>
@@ -43,7 +43,7 @@
 <input id="code" type="text" name="code" placeholder="Enter verification code" autocomplete="off"/>
  <h3 align="left" class="fs-subtitle" style="color:red;" id="code-error"></h3>
 <input type="button" name="previous" class="mt-3 previous action-button" value="Previous" />
-<input id="2" type="button" name="next" class="mt-3 next action-button" value="Next" />
+<input id="next2" type="button" name="next" class="mt-3 next action-button" value="Next" />
 </fieldset>
 <fieldset id="fieldset3">
 <h2 class="fs-title">Set your password</h2>
@@ -53,14 +53,14 @@
     <div class="dash active"></div>
     <div class="dash active"></div>
 
-<input type="password" name="password" placeholder="Enter password" />
+<input id="password" type="password" name="password" placeholder="Enter password" />
  <h3 align="left" class="fs-subtitle" style="color:red;" id="pswd-error"></h3>
 
-<input type="password" name="password1" placeholder="Confirm password" />
+<input if="password1" type="password" name="password1" placeholder="Confirm password" />
      <h3 align="left" class="fs-subtitle" style="color:red;" id="confirm-pswd-error"></h3>
 
 <input type="button" name="previous" class="mt-3 previous action-button" value="Previous" />
-<input id="3" type="submit" name="submit" class="mt-3 submit action-button" value="Submit" />
+<input id="submit" type="submit" name="submit" class="mt-3 submit action-button" value="Submit" />
 </fieldset>
 
 </form>
