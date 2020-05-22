@@ -1,82 +1,18 @@
-$(function() {
 
-//jQuery time
+ //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
-
-$(".next").click(function(){
-/* Prevent empty fields */
-let inputs = document.getElementById(`fieldset${event.target.id}`).getElementsByTagName('input');
-
-let len = inputs.length - event.target.id;   //removing buttons from length
-
- for(let i=0; i<len; i++){
-    if(!inputs[i].value){
-            inputs[i].focus();
-            inputs[i].style.outline = '1px solid red';
-            inputs[i].classList.add('error');
-            inputs[i].addEventListener('keydown', ()=>{
-                  inputs[i].style.outline = 0;
-                  inputs[i].style.color = 'black';
-
-                  inputs[i].classList.remove('error');
-
-            });
-         return false;
-     }
-  }
- if(event.target.id == 1){
-        /* Confirm roll is a number */
-let roll = inputs[0].value;
-let rollPattern = /^\d+$/;
- if(!rollPattern.test(roll)){
-
-      inputs[0].value = '';
-      inputs[0].placeholder = `${roll} is not a valid roll number`;
-      inputs[0].focus();
-      inputs[0].style.outline = '1px solid red';
-      inputs[0].classList.add('error');
-      inputs[0].addEventListener('keydown', ()=>{
-        inputs[0].style.outline = 0;
-        inputs[0].style.color = 'black';
-        inputs[0].classList.remove('error');
-        inputs[0].placeholder = 'Enter your roll number eg: 181522';
-    })
-     return false;
- }
+var authToken = '';
 
 
-    fetch('/accounts/roll/',{
-       method : 'POST',
-       headers: {'Content-Type': 'application/json'},
-       body: JSON.stringify({
-         roll: parseInt(roll)
-       })
+function slideForward(target){
 
-    })
-    .then(response => response.json())
-    .then(data => {
-
-          document.getElementById('roll-error').textContent = data.msg;
-
-
-    })
-
- }
-return false;
-
-
-
-
-	if(animating) return false;
+  if(animating) return false;
 	animating = true;
 
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
-
-	//activate next step on progressbar using the index of next_fs
-	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	current_fs = target.parent();
+	next_fs = target.parent().next();
 
 	//show the next fieldset
 	next_fs.show();
@@ -101,17 +37,16 @@ return false;
 		//this comes from the custom easing plugin
 		easing: 'easeInOutBack'
 	});
-});
 
-$(".previous").click(function(){
-	if(animating) return false;
+
+}
+
+function slideBackward(target){
+    if(animating) return false;
 	animating = true;
 
-	current_fs = $(this).parent();
-	previous_fs = $(this).parent().prev();
-
-	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	current_fs = target.parent();
+	previous_fs = target.parent().prev();
 
 	//show the previous fieldset
 	previous_fs.show();
@@ -136,10 +71,272 @@ $(".previous").click(function(){
 		//this comes from the custom easing plugin
 		easing: 'easeInOutBack'
 	});
+}
+
+
+$(".previous").click(function(){
+   slideBackward($(this));
 });
 
-$(".submit").click(function(){
+$("#next1").click(function(){
+
+let rollField = document.getElementById('roll');
+let roll = rollField.value;
+let rollErrorField = document.getElementById('roll-error');
+let nextBtn = event.target;
+
+if(isEmpty(roll)){
+  displayError(rollField, rollErrorField, 'Roll is a required field');
+  return false;
+}
+
+if(isInvalid(roll)){
+  displayError(rollField, rollErrorField, `${roll} is not a valid roll number`);
+  return false;
+}
+
+/* send ajax request */
+
+    let rollData =  {
+                      roll: parseInt(roll)  };
+    loadGif(nextBtn);
+    rollField.disabled = true;
+    let response = postData('/accounts/roll/', rollData)
+
+    response
+    .then(data => {
+        if(data.success){
+             slideForward($(this));
+             resetGif(nextBtn, 'Next');
+             reset(rollField, rollErrorField);
+             rollField.disabled = false;
+        }else{
+            resetGif(nextBtn, 'Next');
+            rollField.disabled = false;
+            displayError(rollField, rollErrorField, data.msg)
+        }
+
+    })
+    .catch(error=>{
+        console.log(error);
+        resetGif(nextBtn, 'Next');
+        rollField.disabled = false;
+        displayError(rollField, rollErrorField, "Something went wrong.");
+        passwordConfirmField.style.outline = '';
+
+
+ })
+
+
+});
+
+
+$("#next2").click(function(){
+
+
+    let codeField = document.getElementById('code');
+    let code = codeField.value;
+    let codeErrorField = document.getElementById('code-error');
+    let nextBtn = event.target;
+
+
+    if(isEmpty(code)){
+         displayError(codeField, codeErrorField, 'Verification is a required field');
+         return false;
+   }
+
+   /* send ajax request */
+   console.log(parseInt(code));
+   let codeData = {
+      roll: parseInt(document.getElementById('roll').value),
+      code: parseInt(code)
+   }
+   loadGif(nextBtn);
+   codeField.disabled = true;
+   let response = postData('/accounts/verify/', codeData)
+
+   response
+   .then(data => {
+        if(data.success){
+             authToken = data.token;
+             console.log(authToken);
+             slideForward($(this));
+             resetGif(nextBtn, 'Next');
+             reset(codeField, codeErrorField);
+             codeField.disabled = false;
+        }else{
+            resetGif(nextBtn, 'Next');
+            codeField.disabled = false;
+            console.log(data)
+            displayError(codeField, codeErrorField, data.msg)
+        }
+
+    })
+    .catch(error=>{
+        console.log(error);
+        resetGif(nextBtn, 'Next');
+        codeField.disabled = false;
+        displayError(codeField, codeErrorField, "Something went wrong.");
+        passwordConfirmField.style.outline = '';
+
+
+ })
+
+});
+
+$("#submit").click(function(){
 event.preventDefault();
 
+let passwordField = document.getElementById('password');
+let passwordConfirmField = document.getElementById('password-confirm');
+let passwordFieldError = document.getElementById('pswd-error');
+let passwordConfirmFieldError = document.getElementById('confirm-pswd-error');
+let password = passwordField.value;
+let password1 = passwordConfirmField.value;
+let submitBtn = event.target;
+
+if(isEmpty(password)){
+    displayError(passwordField, passwordFieldError, 'Password is a required field');
+    passwordField.addEventListener('keydown', ()=>{
+       reset(passwordField, passwordFieldError);
+    });
+    return false;
+}
+
+if(isEmpty(password1)){
+  displayError(passwordConfirmField, passwordConfirmFieldError, 'Confirmation Password is a required field');
+  passwordConfirmField.addEventListener('keydown', ()=>{
+       reset(passwordConfirmField, passwordConfirmFieldError);
+    });
+
+  return false;
+}
+
+if(containsSpaces(password)){
+   displayError(passwordField, passwordFieldError, 'Password must not contain spaces');
+   return false;
+}
+
+if(isShort(password)){
+   displayError(passwordField, passwordFieldError, 'Password must be at least 5 characters long');
+   return false;
+}
+
+if(!matches(password, password1)){
+   displayError(passwordConfirmField, passwordConfirmFieldError, "Passwords didn't match");
+   passwordConfirmField.addEventListener('keydown', ()=>{
+       reset(passwordConfirmField, passwordConfirmFieldError);
+   });
+   passwordField.addEventListener('keydown', ()=>{
+       reset(passwordConfirmField, passwordConfirmFieldError);
+   });
+
+  return false;
+
+}
+ /* ajax request */
+ loadGif(submitBtn);
+ passwordField.disabled = true;
+ passwordConfirmField.disabled = true;
+
+ let studentData = {
+    roll: parseInt(document.getElementById('roll').value),
+    password : password,
+    token: authToken
+ }
+
+ console.log(studentData);
+
+ let response = postData('/accounts/register/', studentData);
+
+ response
+ .then(data => {
+     if(data.success){
+        console.log(data);
+        resetGif(submitBtn, 'Submit');
+        passwordField.disabled = false;
+        passwordConfirmField.disabled = false;
+        window.location.href = '/accounts/student-home/';
+     }else{
+        resetGif(submitBtn, 'Submit');
+        passwordField.disabled = false;
+        passwordConfirmField.disabled = false;
+        displayError(passwordConfirmField, passwordConfirmFieldError, data.msg);
+        passwordConfirmField.style.outline = '';
+
+     }
+
+ })
+ .catch(error=>{
+        console.log(error);
+        resetGif(submitBtn, 'Submit');
+        passwordField.disabled = false;
+        passwordConfirmField.disabled = false;
+        displayError(passwordConfirmField, passwordConfirmFieldError, "Something went wrong.");
+        passwordConfirmField.style.outline = '';
+
+
+ })
+
 });
-});
+
+
+
+function isEmpty(roll){
+  if(!roll) return true;
+}
+
+function isInvalid(roll){
+    let numberPattern = /^\d+$/;
+    if(!numberPattern.test(roll)) return true;
+}
+
+function isShort(password){
+   if(password.length < 5) return true;
+}
+
+function containsSpaces(password){
+  if(password.indexOf(' ') >= 0) return true;
+}
+
+
+function displayError(inputField, errorField, errorMsg){
+  inputField.style.outline = '1px solid red' ;
+  inputField.focus();
+  errorField.style.fontFamily = 'Raleway';
+  errorField.style.fontWeight = '600';
+  errorField.textContent = errorMsg;
+  errorField.style.display = 'block';
+}
+
+function reset(inputField, errorField){
+  inputField.style.outline = '' ;
+  errorField.textContent = '';
+  errorField.style.display = 'none';
+}
+
+function matches(password, password1){
+  if(password === password1) return true;
+}
+
+async function postData(url, data){
+  let response =  await fetch(url,{
+       method : 'POST',
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify(data)
+    })
+    .then(response => response.json());
+
+   return response;
+
+}
+
+function loadGif(btn){
+  btn.innerHTML = `<i  style="font-size:25px;" class="fa fa-spinner fa-spin mr-1"></i>`
+  btn.disabled = true;
+}
+
+function resetGif(btn,value){
+  btn.innerHTML = value;
+  btn.disabled = false;
+}

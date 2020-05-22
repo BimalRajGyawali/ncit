@@ -4,6 +4,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="{% static 'academics/images/logo-title.png' %}">
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
      <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
      <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
@@ -28,42 +30,40 @@
     <div class="dash active"></div>
     <div class="dash"></div>
     <div class="dash"></div>
-<input type="text" name="roll" placeholder="Enter roll number eg. 181522" autocomplete="off"/>
- <h3 align="left" class="fs-subtitle" style="color:red;" id="roll-error"></h3>
+<input id="roll" type="text" name="roll" placeholder="Enter roll number eg. 181522" autocomplete="off"/>
+ <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="roll-error"></h3>
 
-<input id="1" type="button" name="next" class="mt-3 next action-button" value="Next" />
+    <button id="next1" type="button" name="next" class="mt-3 next action-button">Next</button>
 </fieldset>
 <fieldset id="fieldset2">
 <h2 class="fs-title">Verify it's you</h2>
- <h3 class="fs-subtitle">We have sent a verification code at your phone. Enter code below to verify.</h3>
+ <h3 class="fs-subtitle">We have sent a verification code at your email. Enter code below to verify.</h3>
  <h3 class="fs-subtitle">Step 2 of 3</h3>
     <div class="dash active"></div>
     <div class="dash active"></div>
     <div class="dash"></div>
-<input type="text" name="code" placeholder="Enter verification code" autocomplete="off"/>
- <h3 align="left" class="fs-subtitle" style="color:red;" id="code-error"></h3>
+<input id="code" type="text" name="code" placeholder="Enter verification code" autocomplete="off"/>
+ <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="code-error"></h3>
 <input type="button" name="previous" class="mt-3 previous action-button" value="Previous" />
-<input id="2" type="button" name="next" class="mt-3 next action-button" value="Next" />
+    <button id="next2" type="button" name="next" class="mt-3 next action-button">Next</button>
 </fieldset>
 <fieldset id="fieldset3">
-<h2 class="fs-title">Account Details</h2>
-<h3 class="fs-subtitle">Step 3 of 3</h3>
+<h2 class="fs-title">Set your password</h2>
+<h3 class="fs-subtitle">One step away from your account</h3>
+ <h3 class="fs-subtitle">Step 3 of 3</h3>
     <div class="dash active"></div>
     <div class="dash active"></div>
     <div class="dash active"></div>
 
 
 <input id="password" type="password" name="password" placeholder="Enter password" />
+ <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="pswd-error"></h3>
 
-<input type="email" name="email" placeholder="Enter your email"  autocomplete="off" />
-<input type="password" name="password" placeholder="Enter password" />
- <h3 align="left" class="fs-subtitle" style="color:red;" id="pswd-error"></h3>
-
-<input id="password1" type="password" name="password1" placeholder="Confirm password" />
-     <h3 align="left" class="fs-subtitle" style="color:red;" id="confirm-pswd-error"></h3>
+<input id="password-confirm" type="password" name="password1" placeholder="Confirm password" />
+     <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="confirm-pswd-error"></h3>
 
 <input type="button" name="previous" class="mt-3 previous action-button" value="Previous" />
-<input id="submit" type="submit" name="submit" class="mt-3 submit action-button" value="Submit" />
+    <button id="submit" type="submit" name="submit" class="mt-3 submit action-button">Submit</button>
 </fieldset>
 
 </form>

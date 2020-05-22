@@ -123,6 +123,7 @@ margin-bottom: 20px;
 .action-button{
   margin-top:30px;
 }
+
 .error::placeholder {
   color: red;
   opacity: 1; /* Firefox */
@@ -138,4 +139,9 @@ margin-bottom: 20px;
 
 .red{
    color: red;
+}
+
+.invalid{
+  outline: 1px solid red;
+
 }
