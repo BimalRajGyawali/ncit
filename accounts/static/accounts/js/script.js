@@ -118,7 +118,6 @@ if(isInvalid(roll)){
 
     })
     .catch(error=>{
-        console.log(error);
         resetGif(nextBtn, 'Next');
         rollField.disabled = false;
         displayError(rollField, rollErrorField, "Something went wrong.");
@@ -146,7 +145,6 @@ $("#next2").click(function(){
    }
 
    /* send ajax request */
-   console.log(parseInt(code));
    let codeData = {
       roll: parseInt(document.getElementById('roll').value),
       code: parseInt(code)
@@ -159,7 +157,6 @@ $("#next2").click(function(){
    .then(data => {
         if(data.success){
              authToken = data.token;
-             console.log(authToken);
              slideForward($(this));
              resetGif(nextBtn, 'Next');
              reset(codeField, codeErrorField);
@@ -167,13 +164,11 @@ $("#next2").click(function(){
         }else{
             resetGif(nextBtn, 'Next');
             codeField.disabled = false;
-            console.log(data)
             displayError(codeField, codeErrorField, data.msg)
         }
 
     })
     .catch(error=>{
-        console.log(error);
         resetGif(nextBtn, 'Next');
         codeField.disabled = false;
         displayError(codeField, codeErrorField, "Something went wrong.");
@@ -245,14 +240,12 @@ if(!matches(password, password1)){
     token: authToken
  }
 
- console.log(studentData);
 
  let response = postData('/accounts/register/', studentData);
 
  response
  .then(data => {
      if(data.success){
-        console.log(data);
         resetGif(submitBtn, 'Submit');
         passwordField.disabled = false;
         passwordConfirmField.disabled = false;
@@ -268,7 +261,6 @@ if(!matches(password, password1)){
 
  })
  .catch(error=>{
-        console.log(error);
         resetGif(submitBtn, 'Submit');
         passwordField.disabled = false;
         passwordConfirmField.disabled = false;

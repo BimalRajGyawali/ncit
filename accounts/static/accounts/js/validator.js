@@ -1,5 +1,3 @@
-
-
 function isEmpty(roll){
   if(!roll) return true;
 }

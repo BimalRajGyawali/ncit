@@ -81,7 +81,6 @@ def collect_roll(request):
             else:
                 code = random.randint(100000, 999999)
                 # status = send_verification(code, student.email)
-                print(f'============={code}===============')
                 status = True
                 if status:
                     request.session[f'{roll}'] = code
