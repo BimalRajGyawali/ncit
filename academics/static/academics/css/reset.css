@@ -190,9 +190,8 @@ tr{
   display: inline-block;
   color: white;
   text-decoration: none;
-   margin-right: 12px;
+  margin-right: 12px;
   font-family: 'Raleway';
-  transition: color 0.8s;
 }
 
 .login-banner .left a i{
@@ -206,7 +205,7 @@ tr{
 
 
 .login-banner a:hover{
-   color: gray;
+   font-weight: bold;
 }
 @media only screen and (min-width: 768px){
        .login-banner{

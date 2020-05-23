@@ -34,15 +34,15 @@ def program(request, code):
     return render(request, 'academics/program.html', {'current_program': current_program})
 
 
-def home(request):
+def index(request):
     """
 
     :type request: HTTPRequest
     :param request: carries request info
-    :return: renders home.html
+    :return: renders index.html
 
     """
-    return render(request, 'academics/home.html')
+    return render(request, 'academics/index.html')
 
 
 def facility(request):

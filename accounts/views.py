@@ -1,59 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views import View
 from  .models import Student, StudentLogin
-from .forms import StudentLoginForm, StudentRegistrationForm
-from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json, random, time
 from .utils import send_verification, generate_token
-
-class LogInView(View):
-    template = 'accounts/login.html'
-
-    def get(self, request):
-        form = StudentLoginForm()
-        return render(request, self.template, {'form': form})
-
-    def post(self, request):
-        form = StudentLoginForm(request.POST)
-        if form.is_valid():
-
-            return redirect('home')
-
-        return render(request, self.template, {'form': form})
-
-
-class RegisterView(View):
-    template = 'accounts/register.html'
-
-    def get(self, request):
-        form = StudentRegistrationForm()
-        return render(request, self.template, {'form': form})
-
-    def post(self, request):
-        form = StudentRegistrationForm(request.POST)
-        if form.is_valid():
-            roll = form.cleaned_data.get('roll')
-            student = Student.objects.get(roll=roll)
-            if student is None:
-                messages.error(request, 'Your roll number is not in database. Contact your department')
-                return render(request, self.template, {'form': form})
-
-            else:
-                if student.registered:
-                    messages.info(request, 'You are already registered')
-                    return render(request, self.template, {'form': form})
-                else:
-                    instance = form.save(commit=False)
-                    student.registered = True
-                    student.save()
-                    instance.student = student
-                    instance.save()
-                    messages.success(request, 'Successfully registered')
-                    return redirect('home')
-
-        return render(request, self.template, {'form': form})
 
 
 @csrf_exempt
@@ -137,7 +87,7 @@ def verify_email(request):
         })
 
 @csrf_exempt
-def register(request):
+def register_ajax(request):
     data = json.loads(request.body)
     roll = data.get('roll')
     password = data.get('password')
@@ -155,7 +105,7 @@ def register(request):
             "msg": "Password must not contain spaces"
         })
 
-    if len(password)<5 :
+    if len(password) < 5 :
         return JsonResponse({
             "success": False,
             "msg": "Password must be at least 5 characters long"
@@ -197,6 +147,40 @@ def register(request):
     })
 
 
+@csrf_exempt
+def login_ajax(request):
+    data  = json.loads(request.body)
+    roll = data.get('roll', None)
+    password = data.get('password')
+
+    if roll is None or password is None:
+        return JsonResponse({
+            "success": False,
+            "msg": "Invalid request"
+        })
+
+    if not isinstance(roll, int) or password.find(' ') >= 0 or len(password) < 5:
+        return JsonResponse({
+            "success": False,
+            "msg": "Invalid request parameters"
+        })
+
+    student = Student.objects.filter(roll=roll).first()
+
+    if student is None or not student.registered or not student.studentlogin.password == password:
+        return JsonResponse({
+            "success": False,
+            "msg": "Invalid roll or password"
+        })
+
+    request.session['roll'] = roll
+
+    return JsonResponse({
+        "success": True,
+
+        })
+
+
 def student_home(request):
     if 'roll' not in request.session:
         return render(request, 'accounts/login.html')
@@ -204,4 +188,25 @@ def student_home(request):
     roll = request.session.get('roll')
     student = Student.objects.filter(roll=roll).first()
     return render(request, 'accounts/student_home.html', {'student': student})
+
+
+def login(request):
+    if 'roll' in request.session.keys():
+        roll = request.session.get('roll')
+        student = Student.objects.filter(roll=roll).first()
+        return redirect('student_home')
+
+    return render(request, 'accounts/login.html')
+
+
+def register(request):
+    if 'roll' in request.session.keys():
+        roll = request.session.get('roll')
+        student = Student.objects.filter(roll=roll).first()
+        return redirect('student_home')
+
+    return render(request, 'accounts/register.html')
+
+
+
 

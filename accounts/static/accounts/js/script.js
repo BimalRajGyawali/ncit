@@ -101,7 +101,7 @@ if(isInvalid(roll)){
                       roll: parseInt(roll)  };
     loadGif(nextBtn);
     rollField.disabled = true;
-    let response = postData('/accounts/roll/', rollData)
+    let response = postData('/accounts/roll-ajax/', rollData)
 
     response
     .then(data => {
@@ -151,7 +151,7 @@ $("#next2").click(function(){
    }
    loadGif(nextBtn);
    codeField.disabled = true;
-   let response = postData('/accounts/verify/', codeData)
+   let response = postData('/accounts/verify-ajax/', codeData)
 
    response
    .then(data => {
@@ -241,7 +241,7 @@ if(!matches(password, password1)){
  }
 
 
- let response = postData('/accounts/register/', studentData);
+ let response = postData('/accounts/register-ajax/', studentData);
 
  response
  .then(data => {
