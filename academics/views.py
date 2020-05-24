@@ -78,6 +78,10 @@ def handle404(request):
     return render(request, 'academics/404.html', {'error': '404 Page Not Found'})
 
 
+def about_us(request):
+    return render(request, 'academics/about.html')
+
+
 def contact_us(request):
     newform = ContactUsForm()
     if request.method=='POST':

@@ -33,6 +33,8 @@ img{
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
     background: #fff;
 
+
+
 }
 
 .container{
@@ -127,15 +129,6 @@ img{
     }
  }
 
- footer{
-    margin-top : 50px;
-    padding:10px;
-    background-color:#00004d;
-    color:#fff;
-}
-.footer-text{
-   text-align:center;
-  }
 
 .btn-black{
   color: #000;

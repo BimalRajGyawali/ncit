@@ -1,0 +1,33 @@
+
+footer{
+    margin-top : 50px;
+    padding:60px;
+    background-color: #000035;;
+    color:#fff;
+
+}
+footer ul li, footer ul li a{
+   font-family: 'Open Sans';
+
+}
+.footer-text{
+   text-align:center;
+   font-family: 'Open Sans';
+
+  }
+  .footer-heading{
+  font-size: 1.3em;
+  letter-spacing: 0.01em;
+  font-family: 'Open Sans';
+}
+
+@media only screen and (max-width: 767px){
+       .mbl-margin{
+         padding-top: 50px;
+
+       }
+}
+@media only screen and (min-width: 768px){
+.div-center{
+   margin: 0 auto;
+}
