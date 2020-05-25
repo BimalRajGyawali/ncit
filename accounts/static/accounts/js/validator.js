@@ -38,7 +38,11 @@ function matches(password, password1){
 async function postData(url, data){
   let response =  await fetch(url,{
        method : 'POST',
-       headers: {'Content-Type': 'application/json'},
+       credentials: 'same-origin',
+       headers: {
+       'Content-Type': 'application/json',
+        'X-CSRFToken':  Cookies.get('csrftoken')
+       },
        body: JSON.stringify(data)
     })
     .then(response => response.json());

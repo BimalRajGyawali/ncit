@@ -103,6 +103,7 @@ if(isInvalid(roll)){
     rollField.disabled = true;
     let response = postData('/accounts/roll-ajax/', rollData)
 
+
     response
     .then(data => {
         if(data.success){
@@ -121,9 +122,6 @@ if(isInvalid(roll)){
         resetGif(nextBtn, 'Next');
         rollField.disabled = false;
         displayError(rollField, rollErrorField, "Something went wrong.");
-        passwordConfirmField.style.outline = '';
-
-
  })
 
 
@@ -172,7 +170,6 @@ $("#next2").click(function(){
         resetGif(nextBtn, 'Next');
         codeField.disabled = false;
         displayError(codeField, codeErrorField, "Something went wrong.");
-        passwordConfirmField.style.outline = '';
 
 
  })

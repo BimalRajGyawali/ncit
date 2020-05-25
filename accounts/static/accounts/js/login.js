@@ -53,7 +53,8 @@ document.getElementById('login').addEventListener('click',()=>{
       }
 
 
-      let response = postData('/accounts/login-ajax/', studentData);
+      let response = postData('/accounts/login-ajax/', studentData, Cookies.get('csrftoken'));
+
 
       response
       .then(data => {
