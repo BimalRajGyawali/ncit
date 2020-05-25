@@ -1,16 +1,16 @@
 from django.urls import path
-from .views import collect_roll,verify_email, \
-    register_ajax, student_home, login_ajax, \
-    login, register
+from .views import CollectRollView,VerifyEmailView, \
+    RegisterAjaxView, StudentHomeView, LogInAjaxView, \
+    LogInView, RegisterView
 
 
 urlpatterns = [
-    path('roll-ajax/', collect_roll, name='collect_roll'),
-    path('verify-ajax/', verify_email, name='verify_email'),
-    path('register-ajax/', register_ajax, name='register_ajax'),
-    path('login-ajax/', login_ajax, name='login_ajax'),
-    path('student-home/', student_home, name='student_home'),
-    path('login/', login, name='login'),
-    path('register/', register, name='register')
+    path('roll-ajax/', CollectRollView.as_view(), name='collect_roll'),
+    path('verify-ajax/', VerifyEmailView.as_view(), name='verify_email'),
+    path('register-ajax/', RegisterAjaxView.as_view(), name='register_ajax'),
+    path('login-ajax/', LogInAjaxView.as_view(), name='login_ajax'),
+    path('student-home/', StudentHomeView.as_view(), name='student_home'),
+    path('login/', LogInView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register')
 
 ]
