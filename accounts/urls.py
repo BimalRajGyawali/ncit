@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import CollectRollView,VerifyEmailView, \
     RegisterAjaxView, StudentHomeView, LogInAjaxView, \
-    LogInView, RegisterView
+    LogInView, RegisterView, LogoutView
 
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path('login-ajax/', LogInAjaxView.as_view(), name='login_ajax'),
     path('student-home/', StudentHomeView.as_view(), name='student_home'),
     path('login/', LogInView.as_view(), name='login'),
-    path('register/', RegisterView.as_view(), name='register')
+    path('register/', RegisterView.as_view(), name='register'),
+    path('logout/', LogoutView.as_view(), name='logout')
 
 ]

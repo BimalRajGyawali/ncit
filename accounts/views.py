@@ -14,7 +14,7 @@ class CollectRollView(View):
            if student is None:
                response = {
                    "success": False,
-                   "msg": f"Roll {roll} not found"
+                   "msg": f"Roll {roll} is not registered yet. Contact your department"
                }
            else:
                if student.registered:
@@ -30,8 +30,7 @@ class CollectRollView(View):
 
                else:
                    code = random.randint(100000, 999999)
-                   # status = send_verification(code, student.email)
-                   status = True
+                   status = send_verification(code, student.email)
                    if status:
                        request.session[f'{roll}'] = code
                        response = {
@@ -60,12 +59,12 @@ class VerifyEmailView(View):
         if not isinstance(roll, int):
             return JsonResponse({
                 "success": False,
-                "msg": "Verification code didn't match 1"
+                "msg": "Verification code didn't match"
             })
         if not f'{roll}' in request.session.keys():
             return JsonResponse({
                 "success": False,
-                "msg": "hello"
+                "msg": "Verification code expired"
             })
 
         code_sent = request.session.get(f'{roll}')
@@ -81,7 +80,7 @@ class VerifyEmailView(View):
 
         return JsonResponse({
             "success": False,
-            "msg": "Verification code didn't match 2"
+            "msg": "Verification code didn't match"
         })
 
 
@@ -209,5 +208,11 @@ class RegisterView(View):
        return render(request, 'accounts/register.html')
 
 
+class LogoutView(View):
+    def get(self, request):
+        if 'roll' in request.session.keys():
+            del request.session['roll']
+
+        return redirect('index')
 
 
