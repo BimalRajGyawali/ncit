@@ -33,6 +33,8 @@ img{
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
     background: #fff;
 
+
+
 }
 
 .container{
@@ -127,15 +129,6 @@ img{
     }
  }
 
- footer{
-    margin-top : 50px;
-    padding:10px;
-    background-color:#00004d;
-    color:#fff;
-}
-.footer-text{
-   text-align:center;
-  }
 
 .btn-black{
   color: #000;
@@ -179,4 +172,40 @@ tr{
 }
 .links{
     margin : 0 auto;
+}
+.login-banner {
+  padding:10px;
+  background: #000035;
+  overflow: auto;
+  display: none;
+}
+.login-banner a{
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  margin-right: 12px;
+  font-family: 'Raleway';
+}
+
+.login-banner .left a i{
+    margin-right: 7px;
+
+}
+.login-banner .right a i{
+    margin-right: 1px;
+
+}
+
+
+.login-banner a:hover{
+   font-weight: bold;
+}
+@media only screen and (min-width: 768px){
+       .login-banner{
+         display: block;
+       }
+       .lg-hidden{
+         display: none;
+       }
+
 }

@@ -34,15 +34,15 @@ def program(request, code):
     return render(request, 'academics/program.html', {'current_program': current_program})
 
 
-def home(request):
+def index(request):
     """
 
     :type request: HTTPRequest
     :param request: carries request info
-    :return: renders home.html
+    :return: renders index.html
 
     """
-    return render(request, 'academics/home.html')
+    return render(request, 'academics/index.html')
 
 
 def facility(request):
@@ -76,6 +76,10 @@ def handle404(request):
 
            """
     return render(request, 'academics/404.html', {'error': '404 Page Not Found'})
+
+
+def about_us(request):
+    return render(request, 'academics/about.html')
 
 
 def contact_us(request):

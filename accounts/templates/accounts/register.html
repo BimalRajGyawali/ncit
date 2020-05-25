@@ -1,0 +1,85 @@
+<html>
+{% load static %}
+ <head>
+         <title>Ncit - Nepal College of Information Technology</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="{% static 'academics/images/logo-title.png' %}">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+ </head>
+<body>
+ <div align="center" class="white mt-5 mbl-banner" >
+     <h2 style="cursor:pointer;" onclick="location.href='{% url 'index' %}'">Nepal College of Information Technology</h2>
+     <p class="mt-3"> Register to get updated about exams, results and much more</p>
+
+  </div>
+
+
+
+<!-- multistep form -->
+<form id="msform" method="POST" novalidate>
+{% csrf_token %}
+<!-- fieldsets -->
+<fieldset id="fieldset1">
+<h2 class="fs-title">Create your account</h2>
+
+<h3 class="fs-subtitle">Step 1 of 3 </h3>
+    <div class="dash active"></div>
+    <div class="dash"></div>
+    <div class="dash"></div>
+<input id="roll" type="text" name="roll" placeholder="Enter roll number eg. 181522" autocomplete="off"/>
+ <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="roll-error"></h3>
+
+    <button id="next1" type="button" name="next" class="mt-3 next action-button">Next</button>
+</fieldset>
+<fieldset id="fieldset2">
+<h2 class="fs-title">Verify it's you</h2>
+ <h3 class="fs-subtitle">We have sent a verification code at your email. Enter code below to verify.</h3>
+ <h3 class="fs-subtitle">Step 2 of 3</h3>
+    <div class="dash active"></div>
+    <div class="dash active"></div>
+    <div class="dash"></div>
+<input id="code" type="text" name="code" placeholder="Enter verification code" autocomplete="off"/>
+ <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="code-error"></h3>
+    <button id="next2" type="button" name="next" class="mt-3 next action-button">Next</button>
+</fieldset>
+<fieldset id="fieldset3">
+<h2 class="fs-title">Set your password</h2>
+<h3 class="fs-subtitle">One step away from your account</h3>
+ <h3 class="fs-subtitle">Step 3 of 3</h3>
+    <div class="dash active"></div>
+    <div class="dash active"></div>
+    <div class="dash active"></div>
+
+
+<input id="password" type="password" name="password" placeholder="Enter password" />
+ <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="pswd-error"></h3>
+
+<input id="password-confirm" type="password" name="password1" placeholder="Confirm password" />
+     <h3 align="left" class="fs-subtitle" style="color:red;display:none;" id="confirm-pswd-error"></h3>
+
+    <button id="submit" type="submit" name="submit" class="mt-3 submit action-button">Submit</button>
+</fieldset>
+
+</form>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!-- jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- jQuery easing plugin -->
+<script src="{% static 'accounts/js/jquery.easing.min.js' %}" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+<script src="{% static 'accounts/js/validator.js' %}"></script>
+<script src="{% static 'accounts/js/script.js' %}"></script>
+
+</html>
+

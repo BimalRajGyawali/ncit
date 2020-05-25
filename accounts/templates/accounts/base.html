@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>NCIT - Nepal College of Information Technology</title>
+  <link rel="icon" href="{% static 'academics/images/logo-title.png' %}" type="image/png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <link rel="stylesheet" href="{% static 'accounts/assets/vendor/nucleo/css/nucleo.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'accounts/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'accounts/assets/css/argon.css' %}" type="text/css">
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+      <!-- Brand -->
+      <div  align="" style="overflow: auto; cursor:pointer;" onclick='window.location.href= "{% url "index" %}" '>
+        <div style="width:50%; margin:0 auto; margin-top:10px;margin-bottom:30px;" >
+          <img src="{% static 'academics/images/logo-title.png' %}" style="width:50%; float:left;">
+          <h2 style="" class="p-2">NCIT</h2>
+        </div>
+
+      </div>
+
+
+      <div class="navbar-inner">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul class="navbar-nav">
+
+            <li class="nav-item">
+              <a class="nav-link active" href="">
+                <i class="ni ni-tv-2 text-primary"></i>
+                <span class="nav-link-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="ni ni-single-02 text-primary"></i>
+                <span class="nav-link-text">Profile</span>
+              </a>
+            </li>
+
+             <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="ni ni-single-copy-04 text-warning"></i>
+                <span class="nav-link-text">Unit Tests</span>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="ni ni-briefcase-24 text-success"></i>
+                <span class="nav-link-text">Assessments</span>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="ni ni-hat-3 text-default"></i>
+                <span class="nav-link-text">Board Results</span>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="ni ni-bell-55 text-red"></i>
+                <span class="nav-link-text">Notices</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">
+                 <i class="ni ni-user-run text-default"></i>
+                <span class="nav-link-text">Logout</span>
+              </a>
+            </li>
+            </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  {% block content %}
+
+  {% endblock %}
+
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="{% static 'accounts/assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/js-cookie/js.cookie.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js' %}"></script>
+  <!-- Optional JS -->
+  <script src="{% static 'accounts/assets/vendor/chart.js/dist/Chart.min.js' %}"></script>
+  <script src="{% static 'accounts/assets/vendor/chart.js/dist/Chart.extension.js' %}"></script>
+  <!-- Argon JS -->
+  <script src="{% static 'accounts/assets/js/argon.js' %}"></script>
+
+</body>
+
+</html>

@@ -9,16 +9,19 @@
   <link rel="icon" type="image/x-icon" href="{% static 'academics/images/logo-title.png' %}">
   <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{% static 'academics/css/reset.css' %}"/>
+
+   <link rel="stylesheet" href="{% static 'academics/css/reset.css' %}"/>
+    <link rel="stylesheet" href="{% static 'academics/css/footer.css' %}"/>
+
+
 
 
 </head>
 <body>
      {% include 'academics/header.html' %}
-
-     {% block carousel %} {% endblock %}
 
       <div class="container">
          <div class="row">
@@ -44,11 +47,13 @@
       $(document).ready(function(){
        $('.carousel').carousel({
         keyboard:true,
-        interval:2500
+        interval:1000
        })
     });
 
    </script>
+
+
 
 </body>
 </html>

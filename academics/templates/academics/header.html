@@ -1,5 +1,20 @@
 {% load static %}
+<div class="login-banner mb-3">
+    <div class="left">
+       <a href=""><i class="fa fa-phone ml-5" aria-hidden="true"></i>01-828837</a>
+        <a href=""> <i class="fa fa-envelope" aria-hidden="true"></i>info@ncit.edu.np</a>
+        <a href=""><i class="fa fa-map-marker" aria-hidden="true"></i>Balkumari, Lalitpur</a>
+    </div>
+        <div class="right">
+            <a class="" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login </a>
+            <a class="mr-5" href="{% url 'register' %}"><i class="fa fa-user" aria-hidden="true"></i> Register </a>
+        </div>
+
+</div>
+
+
   <div class="logo mt-2">
+
         <a class="navbar-brand" href="/"><img class="logo" src="{% static 'academics/images/logo.png' %}" alt=""></a>
 
   </div>
@@ -55,12 +70,16 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact_us' %}">Contact </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-info"  href=""><i class="fa fa-user"> </i> Login/Register </a>
+          <li class="nav-item lg-hidden">
+               <a class="nav-link text-info" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login </a>
+          </li>
+          <li class="nav-item lg-hidden">
+              <a class="nav-link text-info" href="{% url 'register' %}"><i class="fa fa-user" aria-hidden="true"></i> Register </a>
           </li>
 
       </ul>
     </div>
   </nav>
+
 
 
