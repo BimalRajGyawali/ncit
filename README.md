@@ -1,5 +1,5 @@
 # NCIT - Nepal College of Information Technology
-Unofficial College website with django. Live at https://unofficialncit.pythonanywhere.com/ 
+Unofficial College website with django.
 
 Documentation for this project is at https://bimalrajgyawali.github.io/ncit-docs/
 
